@@ -1,12 +1,14 @@
-class MathCalc(commands.Cog, name='Mathematics'):
+from discord.ext import commands
+
+class Mathematics(commands.Cog, name='Mathematics'):
 	# TODO Pass msg rm delay
-    def __init__(self, bot):
-        self.bot = bot
+	def __init__(self, bot):
+		self.bot = bot
 
-    # TODO Add an eval function for quick mafs
+	# TODO Add an eval function for quick mafs
 
-    @commands.command()
-	async def sqr(ctx, num):
-    	await ctx.message.delete()
-    	# TODO Use msg rm delay on send
-    	await ctx.send(int(num)** 2, delete_after=5)
+	@commands.command()
+	async def sqr(ctx, num: int):
+		await ctx.message.delete()
+		# TODO Use msg rm delay on send
+		await ctx.send(num** 2, delete_after=5)

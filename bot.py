@@ -1,17 +1,7 @@
 from discord.ext import commands
-import discord
-import random, json
+import utils
 
-with open('config.json') as f:
-    config = json.load(f)
-
-random.seed()
+config = utils.init()
 bot = commands.Bot(command_prefix='>')
-
-bot.add_cog(Gamble(bot))
-bot.add_cog(MathCalc(bot))
-
-for cog in bot.cogs:
-    print(f"Loaded: {cog}")
-
-bot.run(TOKEN)
+utils.loadCogs(bot)
+bot.run(config["TOKEN"])
