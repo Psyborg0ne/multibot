@@ -23,7 +23,7 @@ class Gambling(commands.Cog, name='Gambling'):
 			dice_embed = discord.Embed(title="Roll Machine" , description="Rolling")
 
 			for i in range(dice):
-				dice_embed.add_field(name=f"#{i+1}:" , value=random.randint(1,6) , inline=True)
+				dice_embed.add_field(name=f"Roll #{i+1}:" , value=random.randint(1,6) , inline=True)
 
 			await ctx.send(embed=dice_embed)
 		else:
