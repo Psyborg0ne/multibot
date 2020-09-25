@@ -2,6 +2,7 @@ import json, random
 from cogs.cog_gamble import Gambling
 from cogs.cog_math import Mathematics
 from cogs.cog_admin import Administration
+from cogs.cog_news import News
 
 def printLogo():
     with open("./res/logo.txt") as f:
@@ -22,6 +23,7 @@ def loadCogs(bot):
     bot.add_cog(Gambling(bot))
     bot.add_cog(Mathematics(bot))
     bot.add_cog(Administration(bot))
+    bot.add_cog(News(bot))
 
     print("--- Cog Manager ---")
     for cog in bot.cogs:
