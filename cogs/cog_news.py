@@ -1,28 +1,31 @@
-import discord, aiohttp, feedparser
+import discord
+import feedparser
+
 from discord.ext import commands
 
-class News(commands.Cog, name='News'):
-	# TODO Pass msg rm delay
-	def __init__(self, bot):
-		self.bot = bot
-		self.rss_unboxholics = "https://unboxholics.com/news/gaming?format=rss"
 
-	@commands.group()
-	async def news(self, ctx):
-		if ctx.invoked_subcommand is None:
-			await ctx.send("Specify news category")
+class News(commands.Cog, name="News"):
+    # TODO Pass msg rm delay
+    def __init__(self, bot):
+        self.bot = bot
+        self.rss_unboxholics = "https://unboxholics.com/news/gaming?format=rss"
 
-	@news.command()
-	async def games(self, ctx):
+    @commands.group()
+    async def news(self, ctx):
+        if ctx.invoked_subcommand is None:
+            await ctx.send("Specify news category")
 
-		d=feedparser.parse(self.rss_unboxholics)
+    @news.command()
+    async def games(self, ctx):
 
-		games_embed = discord.Embed(title="Game News")
+        d = feedparser.parse(self.rss_unboxholics)
 
-		for entry in d.entries:
+        games_embed = discord.Embed(title="Game News")
 
-			games_embed.add_field(name=entry.title, value=entry.link, inline=False)
+        for entry in d.entries:
 
-		await ctx.send(embed=games_embed)
-			# print(20*'-')
-			# print(entry.title)
+            games_embed.add_field(name=entry.title, value=entry.link, inline=False)
+
+        await ctx.send(embed=games_embed)
+        # print(20*'-')
+        # print(entry.title)
